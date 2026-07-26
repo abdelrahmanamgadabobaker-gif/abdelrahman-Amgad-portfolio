@@ -29,7 +29,7 @@ const projects = [
     description: "Aviation-focused social media campaigns combining destination storytelling, seasonal communication, airline offers, and event-based content.",
     tags: ["Social Media", "Art Direction", "Travel Campaigns", "Photo Compositing"],
     color: "rgba(28, 76, 132, .24)",
-    cover: "assets/nsas-wizz-special-fare.png",
+    cover: "assets/nsas-wizz-special-fare.webp",
     link: "nsas.html"
   },
   {

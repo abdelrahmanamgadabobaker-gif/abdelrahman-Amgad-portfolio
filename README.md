@@ -45,3 +45,5 @@ Version 18: added a dedicated Trueval by El Zenouki project page; used the month
 Version 19: added Abdelrahman's signature to the About section and every project page; aligned the homepage portrait with the top of the hero text and cropped a small amount from the top.
 
 Version 20: rebuilt the Bokra selected-posts section as five organized swipe galleries, matching the interaction pattern used across Jupiter, NSAS, Touch, and Trueval.
+
+Version 21: converted large artwork files to optimized WebP and updated all website references for GitHub-friendly uploads.
