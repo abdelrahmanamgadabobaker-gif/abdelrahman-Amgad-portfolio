@@ -27,3 +27,21 @@ Each project can later be expanded into a full standalone case-study page.
 - Clicking the Bokra project card now opens `bokra.html`.
 
 - `jupiter.html` — Jupiter Commz selected work project page.
+
+Version 12: Jupiter posts are arranged in organized horizontal swipe carousels with arrows, dots, scroll snapping, and mobile touch support.
+
+Version 13: removed repeated Jupiter artwork, added explicit LEFT/RIGHT controls, and validated carousel structure, local image paths, and JavaScript syntax.
+
+Version 14: removed the standalone Jupiter cover and design-approach block so the swipe galleries begin immediately after the project introduction.
+
+Version 15: added a dedicated NSAS Avia Solutions project page with three organized swipe galleries for destinations, aviation moments, and seasonal communication.
+
+Version 16: added a dedicated Touch by El Zenouki project page with product, feature-focused, and seasonal swipe galleries; connected it to the homepage.
+
+Version 17: changed the Touch homepage cover to the supplied meat-grinder campaign visual and added Abdelrahman's signature asset for future use.
+
+Version 18: added a dedicated Trueval by El Zenouki project page; used the monthly giveaway visual as the homepage cover; organized work into product trust, community engagement, and seasonal swipe galleries.
+
+Version 19: added Abdelrahman's signature to the About section and every project page; aligned the homepage portrait with the top of the hero text and cropped a small amount from the top.
+
+Version 20: rebuilt the Bokra selected-posts section as five organized swipe galleries, matching the interaction pattern used across Jupiter, NSAS, Touch, and Trueval.

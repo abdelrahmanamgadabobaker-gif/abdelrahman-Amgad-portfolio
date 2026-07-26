@@ -1582,3 +1582,952 @@ h3 { font-size: 1.3rem; margin-bottom: 6px; }
     padding-top: 74px;
   }
 }
+
+
+/* =========================================================
+   Jupiter organized swipe galleries
+   ========================================================= */
+.jupiter-slider {
+  position: relative;
+}
+
+.slider-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.slider-count {
+  color: #7f898d;
+  font-size: .86rem;
+  letter-spacing: .12em;
+}
+
+.slider-count strong {
+  color: var(--jupiter-gold);
+  font-size: 1.35rem;
+}
+
+.slider-arrows {
+  display: flex;
+  gap: 10px;
+}
+
+.slider-arrow {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  background: rgba(255,255,255,.045);
+  color: #fff;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: transform .25s ease, background .25s ease, opacity .25s ease;
+}
+
+.slider-arrow:hover:not(:disabled) {
+  background: var(--jupiter-gold);
+  color: #111;
+  transform: translateY(-2px);
+}
+
+.slider-arrow:disabled {
+  opacity: .28;
+  cursor: default;
+}
+
+.slider-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+  border-radius: 24px;
+}
+
+.slider-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  padding: 2px max(0px, calc((100vw - min(1180px, 100vw - 48px)) / 2));
+}
+
+.slider-card {
+  flex: 0 0 clamp(300px, 42vw, 520px);
+  aspect-ratio: 4 / 5;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.11);
+  background: #0e1516;
+  cursor: zoom-in;
+}
+
+.slider-card-story {
+  flex-basis: clamp(230px, 28vw, 360px);
+  aspect-ratio: 9 / 16;
+}
+
+.slider-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .55s cubic-bezier(.2,.8,.2,1);
+}
+
+.slider-card:hover img {
+  transform: scale(1.018);
+}
+
+.slider-card figcaption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 15px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 13px;
+  background: rgba(5,17,18,.82);
+  backdrop-filter: blur(12px);
+  font-size: .82rem;
+}
+
+.slider-card figcaption span {
+  color: #f2f5f5;
+}
+
+.slider-card figcaption strong {
+  color: var(--jupiter-gold);
+  font-size: .76rem;
+  letter-spacing: .12em;
+}
+
+.slider-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.slider-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 99px;
+  background: rgba(255,255,255,.25);
+  cursor: pointer;
+  transition: width .25s ease, background .25s ease;
+}
+
+.slider-dot.active {
+  width: 30px;
+  background: var(--jupiter-gold);
+}
+
+/* Disable the old masonry layouts on the updated Jupiter page */
+.jupiter-page .jupiter-editorial-grid,
+.jupiter-page .jupiter-corporate-grid,
+.jupiter-page .jupiter-moment-grid {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .slider-toolbar {
+    margin-bottom: 14px;
+  }
+
+  .slider-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .slider-track {
+    gap: 14px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .slider-card,
+  .slider-card-story {
+    flex-basis: calc(100vw - 48px);
+    aspect-ratio: 4 / 5;
+  }
+
+  .slider-card figcaption {
+    left: 11px;
+    right: 11px;
+    bottom: 11px;
+  }
+}
+
+
+/* =========================================================
+   Jupiter v13 — unique hero cover and clearer controls
+   ========================================================= */
+.jupiter-single-cover {
+  margin-top: 72px;
+}
+
+.jupiter-single-cover figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.1);
+  background: #101617;
+  cursor: zoom-in;
+  aspect-ratio: 16 / 8.4;
+}
+
+.jupiter-single-cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 43%;
+  transition: transform .6s cubic-bezier(.2,.8,.2,1);
+}
+
+.jupiter-single-cover figure:hover img {
+  transform: scale(1.018);
+}
+
+.slider-arrow {
+  width: auto;
+  min-width: 92px;
+  padding: 0 16px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.slider-arrow small {
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+@media (max-width: 700px) {
+  .jupiter-single-cover {
+    margin-top: 48px;
+  }
+
+  .jupiter-single-cover figure {
+    aspect-ratio: 4 / 5;
+  }
+
+  .slider-arrow {
+    min-width: 48px;
+    width: 48px;
+    padding: 0;
+  }
+
+  .slider-arrow small {
+    display: none;
+  }
+}
+
+
+/* Jupiter v14 — start directly with the swipe gallery */
+.jupiter-page .jupiter-hero {
+  padding-bottom: 24px;
+}
+
+.jupiter-page .jupiter-hero + .jupiter-gallery-section {
+  padding-top: 44px;
+}
+
+@media (max-width: 700px) {
+  .jupiter-page .jupiter-hero {
+    padding-bottom: 10px;
+  }
+
+  .jupiter-page .jupiter-hero + .jupiter-gallery-section {
+    padding-top: 34px;
+  }
+}
+
+
+/* =========================================================
+   NSAS Avia Solutions project
+   ========================================================= */
+.nsas-page {
+  --nsas-blue: #1267a8;
+  --nsas-deep: #07182a;
+  --nsas-sky: #69c3ff;
+  --nsas-accent: #ffcf35;
+}
+
+.nsas-hero {
+  padding-bottom: 24px;
+}
+
+.nsas-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
+  gap: 72px;
+  align-items: end;
+  margin-top: 70px;
+}
+
+.nsas-hero-copy h1 {
+  max-width: 980px;
+  font-size: clamp(3.4rem, 7vw, 7.4rem);
+  line-height: .96;
+  letter-spacing: -.07em;
+  margin: 18px 0 32px;
+}
+
+.nsas-hero-copy h1 span {
+  color: var(--nsas-sky);
+}
+
+.nsas-hero-copy .case-intro {
+  max-width: 790px;
+}
+
+.nsas-hero-meta {
+  border-left: 1px solid rgba(255,255,255,.14);
+  padding-left: 28px;
+  display: grid;
+  gap: 28px;
+}
+
+.nsas-hero-meta div {
+  display: grid;
+  gap: 7px;
+}
+
+.nsas-hero-meta span {
+  color: #929ba1;
+  font-size: .72rem;
+  letter-spacing: .14em;
+}
+
+.nsas-hero-meta strong {
+  font-size: .98rem;
+  line-height: 1.5;
+}
+
+.nsas-gallery-section {
+  padding-top: 78px;
+}
+
+.nsas-section-head {
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 42px;
+}
+
+.nsas-section-head h2,
+.nsas-end h2 {
+  font-size: clamp(2.4rem, 5vw, 5.2rem);
+  line-height: 1.02;
+  letter-spacing: -.055em;
+  margin: 12px 0 0;
+  max-width: 920px;
+}
+
+.nsas-section-head > p {
+  color: #aeb6ba;
+  line-height: 1.75;
+  margin: 0 0 8px;
+  max-width: 480px;
+}
+
+.nsas-slider {
+  position: relative;
+}
+
+.nsas-page .slider-count strong,
+.nsas-page .slider-card figcaption strong {
+  color: var(--nsas-accent);
+}
+
+.nsas-page .slider-arrow:hover:not(:disabled),
+.nsas-page .slider-dot.active {
+  background: var(--nsas-accent);
+  color: #111;
+}
+
+.nsas-page .slider-card {
+  border-color: rgba(105,195,255,.18);
+  box-shadow: 0 22px 70px rgba(0,30,60,.2);
+}
+
+.nsas-end {
+  margin-top: 120px;
+  padding-top: 100px;
+  padding-bottom: 130px;
+  border-top: 1px solid rgba(255,255,255,.11);
+  text-align: center;
+}
+
+.nsas-end h2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nsas-end > p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 0 auto 34px;
+  color: #aeb6ba;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 1050px) {
+  .nsas-hero-grid,
+  .nsas-section-head {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .nsas-hero-meta {
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,.14);
+    padding: 28px 0 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .nsas-hero {
+    padding-bottom: 10px;
+  }
+
+  .nsas-hero-grid {
+    margin-top: 44px;
+  }
+
+  .nsas-hero-copy h1 {
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  .nsas-hero-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .nsas-gallery-section {
+    padding-top: 54px;
+  }
+
+  .nsas-section-head {
+    margin-bottom: 28px;
+  }
+
+  .nsas-end {
+    margin-top: 84px;
+    padding-top: 74px;
+  }
+}
+
+
+/* =========================================================
+   Touch by El Zenouki project
+   ========================================================= */
+.touch-page {
+  --touch-green: #8bc73e;
+  --touch-ink: #0c0d0d;
+}
+
+.touch-hero { padding-bottom: 24px; }
+
+.touch-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
+  gap: 72px;
+  align-items: end;
+  margin-top: 70px;
+}
+
+.touch-hero-copy h1 {
+  max-width: 990px;
+  font-size: clamp(3.4rem, 7vw, 7.4rem);
+  line-height: .96;
+  letter-spacing: -.07em;
+  margin: 18px 0 32px;
+}
+
+.touch-hero-copy h1 span { color: var(--touch-green); }
+.touch-hero-copy .case-intro { max-width: 790px; }
+
+.touch-hero-meta {
+  border-left: 1px solid rgba(255,255,255,.14);
+  padding-left: 28px;
+  display: grid;
+  gap: 28px;
+}
+
+.touch-hero-meta div { display: grid; gap: 7px; }
+.touch-hero-meta span { color: #929ba1; font-size: .72rem; letter-spacing: .14em; }
+.touch-hero-meta strong { font-size: .98rem; line-height: 1.5; }
+
+.touch-gallery-section { padding-top: 78px; }
+
+.touch-section-head {
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 42px;
+}
+
+.touch-section-head h2,
+.touch-end h2 {
+  font-size: clamp(2.4rem, 5vw, 5.2rem);
+  line-height: 1.02;
+  letter-spacing: -.055em;
+  margin: 12px 0 0;
+  max-width: 920px;
+}
+
+.touch-section-head > p {
+  color: #aeb6ba;
+  line-height: 1.75;
+  margin: 0 0 8px;
+  max-width: 480px;
+}
+
+.touch-slider { position: relative; }
+
+.touch-page .slider-count strong,
+.touch-page .slider-card figcaption strong { color: var(--touch-green); }
+
+.touch-page .slider-arrow:hover:not(:disabled),
+.touch-page .slider-dot.active {
+  background: var(--touch-green);
+  color: var(--touch-ink);
+}
+
+.touch-page .slider-card {
+  border-color: rgba(139,199,62,.2);
+  box-shadow: 0 22px 70px rgba(31,55,7,.14);
+}
+
+.touch-page .slider-card img { background: #f4f4f1; }
+
+.touch-end {
+  margin-top: 120px;
+  padding-top: 100px;
+  padding-bottom: 130px;
+  border-top: 1px solid rgba(255,255,255,.11);
+  text-align: center;
+}
+
+.touch-end h2 { margin-left: auto; margin-right: auto; }
+
+.touch-end > p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 0 auto 34px;
+  color: #aeb6ba;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 1050px) {
+  .touch-hero-grid,
+  .touch-section-head {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .touch-hero-meta {
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,.14);
+    padding: 28px 0 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .touch-hero { padding-bottom: 10px; }
+  .touch-hero-grid { margin-top: 44px; }
+  .touch-hero-copy h1 { font-size: clamp(3rem, 15vw, 5rem); }
+  .touch-hero-meta { grid-template-columns: 1fr; }
+  .touch-gallery-section { padding-top: 54px; }
+  .touch-section-head { margin-bottom: 28px; }
+  .touch-end { margin-top: 84px; padding-top: 74px; }
+}
+
+
+/* =========================================================
+   Trueval by El Zenouki project
+   ========================================================= */
+.trueval-page {
+  --trueval-red: #b51f2a;
+  --trueval-red-soft: #e33a42;
+  --trueval-cream: #f3eee8;
+}
+
+.trueval-hero {
+  padding-bottom: 24px;
+}
+
+.trueval-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
+  gap: 72px;
+  align-items: end;
+  margin-top: 70px;
+}
+
+.trueval-hero-copy h1 {
+  max-width: 1020px;
+  font-size: clamp(3.4rem, 7vw, 7.4rem);
+  line-height: .96;
+  letter-spacing: -.07em;
+  margin: 18px 0 32px;
+}
+
+.trueval-hero-copy h1 span {
+  color: var(--trueval-red-soft);
+}
+
+.trueval-hero-copy .case-intro {
+  max-width: 790px;
+}
+
+.trueval-hero-meta {
+  border-left: 1px solid rgba(255,255,255,.14);
+  padding-left: 28px;
+  display: grid;
+  gap: 28px;
+}
+
+.trueval-hero-meta div {
+  display: grid;
+  gap: 7px;
+}
+
+.trueval-hero-meta span {
+  color: #929ba1;
+  font-size: .72rem;
+  letter-spacing: .14em;
+}
+
+.trueval-hero-meta strong {
+  font-size: .98rem;
+  line-height: 1.5;
+}
+
+.trueval-gallery-section {
+  padding-top: 78px;
+}
+
+.trueval-section-head {
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 42px;
+}
+
+.trueval-section-head h2,
+.trueval-end h2 {
+  font-size: clamp(2.4rem, 5vw, 5.2rem);
+  line-height: 1.02;
+  letter-spacing: -.055em;
+  margin: 12px 0 0;
+  max-width: 920px;
+}
+
+.trueval-section-head > p {
+  color: #aeb6ba;
+  line-height: 1.75;
+  margin: 0 0 8px;
+  max-width: 480px;
+}
+
+.trueval-slider {
+  position: relative;
+}
+
+.trueval-page .slider-count strong,
+.trueval-page .slider-card figcaption strong {
+  color: var(--trueval-red-soft);
+}
+
+.trueval-page .slider-arrow:hover:not(:disabled),
+.trueval-page .slider-dot.active {
+  background: var(--trueval-red-soft);
+  color: #fff;
+}
+
+.trueval-page .slider-card {
+  border-color: rgba(227,58,66,.2);
+  box-shadow: 0 22px 70px rgba(80,10,14,.18);
+}
+
+.trueval-page .slider-card img {
+  background: var(--trueval-cream);
+}
+
+.trueval-end {
+  margin-top: 120px;
+  padding-top: 100px;
+  padding-bottom: 130px;
+  border-top: 1px solid rgba(255,255,255,.11);
+  text-align: center;
+}
+
+.trueval-end h2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trueval-end > p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 0 auto 34px;
+  color: #aeb6ba;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 1050px) {
+  .trueval-hero-grid,
+  .trueval-section-head {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .trueval-hero-meta {
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,.14);
+    padding: 28px 0 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .trueval-hero {
+    padding-bottom: 10px;
+  }
+
+  .trueval-hero-grid {
+    margin-top: 44px;
+  }
+
+  .trueval-hero-copy h1 {
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  .trueval-hero-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .trueval-gallery-section {
+    padding-top: 54px;
+  }
+
+  .trueval-section-head {
+    margin-bottom: 28px;
+  }
+
+  .trueval-end {
+    margin-top: 84px;
+    padding-top: 74px;
+  }
+}
+
+
+/* =========================================================
+   Version 19 — signature system and hero portrait refinement
+   ========================================================= */
+.hero {
+  align-items: start;
+}
+
+.portrait-card img {
+  top: -18px;
+  height: calc(100% + 18px);
+  object-position: center top;
+}
+
+.about-signature {
+  display: grid;
+  justify-items: start;
+  gap: 7px;
+  width: max-content;
+  margin: 30px 0 34px;
+}
+
+.about-signature span,
+.project-signature > span {
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.about-signature img {
+  width: clamp(150px, 17vw, 220px);
+  max-height: 82px;
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0) invert(1);
+  opacity: .94;
+}
+
+.project-signature {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding-top: 44px;
+  padding-bottom: 82px;
+  text-align: center;
+}
+
+.project-signature img {
+  width: clamp(165px, 18vw, 235px);
+  max-height: 92px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .92;
+  transition: transform .35s ease, opacity .35s ease;
+}
+
+.project-signature:hover img {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+@media (max-width: 960px) {
+  .portrait-card img {
+    top: -14px;
+    height: calc(100% + 14px);
+  }
+}
+
+@media (max-width: 640px) {
+  .portrait-card img {
+    top: -10px;
+    height: calc(100% + 10px);
+  }
+
+  .project-signature {
+    padding-top: 28px;
+    padding-bottom: 60px;
+  }
+}
+
+
+/* =========================================================
+   Version 20 — Bokra selected work swipe galleries
+   ========================================================= */
+.bokra-gallery-section {
+  padding-top: 76px;
+}
+
+.bokra-section-head {
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+.bokra-section-head h2 {
+  font-size: clamp(2.5rem, 5vw, 5.35rem);
+  line-height: 1.01;
+  letter-spacing: -.058em;
+  margin: 12px 0 0;
+  max-width: 980px;
+}
+
+.bokra-section-head > p {
+  color: #aeb6ba;
+  line-height: 1.75;
+  margin: 0 0 8px;
+  max-width: 490px;
+}
+
+.bokra-slider {
+  position: relative;
+}
+
+.bokra-slider .slider-toolbar {
+  align-items: end;
+}
+
+.bokra-slider .slider-toolbar h3 {
+  font-size: clamp(1.75rem, 3vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  margin: 8px 0 0;
+  max-width: 760px;
+}
+
+.slider-toolbar-side {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.bokra-slider .slider-count strong,
+.bokra-slider .slider-card figcaption strong {
+  color: #00b8ae;
+}
+
+.bokra-slider .slider-arrow:hover:not(:disabled),
+.bokra-slider .slider-dot.active {
+  background: #00b8ae;
+  color: #061313;
+}
+
+.bokra-slider .slider-card {
+  border-color: rgba(0,184,174,.2);
+  box-shadow: 0 22px 70px rgba(0,84,97,.18);
+}
+
+@media (max-width: 900px) {
+  .bokra-section-head {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .bokra-slider .slider-toolbar {
+    align-items: start;
+  }
+
+  .slider-toolbar-side {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 700px) {
+  .bokra-gallery-section {
+    padding-top: 54px;
+  }
+
+  .bokra-section-head {
+    margin-bottom: 32px;
+  }
+
+  .slider-toolbar-side {
+    gap: 12px;
+  }
+}

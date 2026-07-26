@@ -23,30 +23,36 @@ const projects = [
   },
   {
     title: "NSAS Avia Solutions",
-    category: "Travel & Aviation · Advertising",
+    category: "Aviation & Travel · Social Media",
     year: "2025",
-    status: "Ready for curation",
-    description: "Travel and aviation visuals combining destination storytelling, promotional messaging, and high-impact advertising composition.",
-    tags: ["Advertising", "Travel", "Compositing", "Visual Storytelling"],
-    color: "rgba(62, 94, 255, .23)"
+    status: "View selected work",
+    description: "Aviation-focused social media campaigns combining destination storytelling, seasonal communication, airline offers, and event-based content.",
+    tags: ["Social Media", "Art Direction", "Travel Campaigns", "Photo Compositing"],
+    color: "rgba(28, 76, 132, .24)",
+    cover: "assets/nsas-wizz-special-fare.png",
+    link: "nsas.html"
   },
   {
-    title: "Touch Elzenouki",
-    category: "Home Appliances · Social Media",
+    title: "Touch by El Zenouki",
+    category: "Home Appliances · Product Communication",
     year: "2025",
-    status: "Ready for curation",
-    description: "Product-focused social media designs built around clear hierarchy, lifestyle context, and recognizable brand assets.",
-    tags: ["Product Design", "Social Media", "Retail"],
-    color: "rgba(132, 208, 75, .22)"
+    status: "View selected work",
+    description: "Consumer-focused visual communication that turns appliance features, practical benefits, and seasonal moments into clear and engaging social content.",
+    tags: ["Product Advertising", "Social Media", "Retail Communication", "Arabic Typography"],
+    color: "rgba(139, 199, 62, .24)",
+    cover: "assets/touch-home-cover.jpg",
+    link: "touch.html"
   },
   {
-    title: "Trueval Elzenouki",
-    category: "Cookware · Social Media",
+    title: "Trueval by El Zenouki",
+    category: "Cookware · Product & Community Communication",
     year: "2025",
-    status: "Ready for curation",
-    description: "Branded social media visuals for cookware and kitchen products, balancing product clarity with campaign storytelling.",
-    tags: ["Product Visuals", "Social Media", "Campaign Design"],
-    color: "rgba(178, 40, 48, .22)"
+    status: "View selected work",
+    description: "Cookware communication combining product education, audience engagement, seasonal moments, and retail-focused social media content.",
+    tags: ["Product Advertising", "Community Engagement", "Seasonal Campaigns", "Arabic Typography"],
+    color: "rgba(178, 40, 48, .24)",
+    cover: "assets/trueval-giveaway-cover.jpg",
+    link: "trueval.html"
   },
   {
     title: "Personal Explorations",
