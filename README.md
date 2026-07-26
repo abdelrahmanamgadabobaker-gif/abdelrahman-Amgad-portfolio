@@ -25,3 +25,5 @@ Each project can later be expanded into a full standalone case-study page.
 - Added a complete Bokra case study page.
 - Added the Bokra campaign hero image.
 - Clicking the Bokra project card now opens `bokra.html`.
+
+- `jupiter.html` — Jupiter Commz selected work project page.

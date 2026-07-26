@@ -14,10 +14,12 @@ const projects = [
     title: "Jupiter Commz",
     category: "PR & Communications · Social Media",
     year: "2025",
-    status: "Project assets coming next",
-    description: "A range of social media concepts and branded communication pieces created for a PR and communications agency.",
-    tags: ["Social Media", "Art Direction", "Brand Consistency"],
-    color: "rgba(22, 132, 127, .24)"
+    status: "View selected work",
+    description: "A visual content system created for a PR agency, spanning brand communication, thought leadership, seasonal moments, recruitment, and corporate storytelling.",
+    tags: ["Social Media", "Art Direction", "Brand Consistency", "PR Communication"],
+    color: "rgba(22, 132, 127, .24)",
+    cover: "assets/jupiter-relationships.jpg",
+    link: "jupiter.html"
   },
   {
     title: "NSAS Avia Solutions",
