@@ -35,12 +35,8 @@
 <div class="nsas-hero-grid">
 <div class="nsas-hero-copy reveal">
 <p class="eyebrow">AVIATION &amp; TRAVEL · SOCIAL MEDIA · 2025</p>
-<h1 class="text-balance">Travel communication designed to feel <span>dynamic, premium, and destination-led.</span></h1>
-<p class="case-intro copy-long">
-            A curated selection of aviation and travel visuals created for NSAS Avia Solutions and NSAS Travel.
-            The work spans airline offers, destination campaigns, seasonal greetings, national occasions,
-            and aviation-related awareness content.
-          </p>
+<h1 class="text-balance">Travel visuals built around <span>the destination.</span></h1>
+<p class="case-intro copy-long">Selected aviation and travel communication for NSAS.</p>
 </div>
 <div class="nsas-hero-meta reveal">
 <div><span>ROLE</span><strong>Graphic Designer</strong></div>
@@ -50,8 +46,6 @@
 </div>
 <a class="scroll-cue" href="#project-content">SCROLL TO EXPLORE ↓</a></section>
 <section class="section-shell nsas-gallery-section rhythm-section rhythm-alt" id="project-content">
-
-
 <div class="section-inner"><div class="nsas-section-head reveal">
 <div>
 <p class="eyebrow">DESTINATIONS &amp; AIRLINE OFFERS</p>
@@ -89,8 +83,6 @@
 <div aria-label="Carousel navigation" class="slider-dots" data-dots=""></div>
 </div></div></section>
 <section class="section-shell nsas-gallery-section rhythm-section rhythm-base">
-
-
 <div class="section-inner"><div class="nsas-section-head reveal">
 <div>
 <p class="eyebrow">AVIATION MOMENTS</p>
@@ -124,8 +116,6 @@
 <div aria-label="Carousel navigation" class="slider-dots" data-dots=""></div>
 </div></div></section>
 <section class="section-shell nsas-gallery-section rhythm-section rhythm-alt">
-
-
 <div class="section-inner"><div class="nsas-section-head reveal">
 <div>
 <p class="eyebrow">SEASONAL COMMUNICATION</p>
@@ -155,14 +145,7 @@
 <div aria-label="Carousel navigation" class="slider-dots" data-dots=""></div>
 </div></div></section>
 <section class="section-shell nsas-end section-block reveal rhythm-section rhythm-base statement-section">
-
-
-
-
-<div class="section-inner"><p class="eyebrow">PROJECT TAKEAWAY</p><h2 class="text-balance">Travel visuals work best when the destination becomes the hero.</h2><p class="copy-long">
-        The project combines brand identity, location cues, aircraft imagery, and campaign messaging to create
-        content that feels immediately connected to movement, escape, and travel opportunity.
-      </p><a class="button button-primary" href="index.html#work">Explore more projects</a></div></section>
+<div class="section-inner"><p class="eyebrow">PROJECT TAKEAWAY</p><h2 class="text-balance">The destination should always feel like the hero.</h2><a class="button button-primary" href="index.html#work">Explore more projects</a></div></section>
 </main>
 <section aria-label="Project signature" class="section-shell project-signature reveal">
 <span>Designed by</span>
@@ -200,61 +183,93 @@
       const total = slider.querySelector('[data-total]');
       const dotsWrap = slider.querySelector('[data-dots]');
 
-      total.textContent = String(cards.length).padStart(2, '0');
+      if (!viewport || !cards.length || !prev || !next) return;
+      if (total) total.textContent = String(cards.length).padStart(2, '0');
+
+      let activeIndex = 0;
+      let scrollFrame = 0;
+
+      const clampIndex = index => Math.max(0, Math.min(cards.length - 1, index));
+
+      function cardTargetLeft(index) {
+        const card = cards[clampIndex(index)];
+        const viewportRect = viewport.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        return viewport.scrollLeft + (cardRect.left - viewportRect.left) -
+          (viewport.clientWidth - cardRect.width) / 2;
+      }
 
       function scrollToCard(index, behavior = 'smooth') {
-        const card = cards[index];
-        const targetLeft = card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
-        viewport.scrollTo({ left: Math.max(0, targetLeft), behavior });
+        activeIndex = clampIndex(index);
+        viewport.scrollTo({ left: cardTargetLeft(activeIndex), behavior });
+        updateControls(activeIndex);
       }
 
-      cards.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'slider-dot';
-        dot.setAttribute('aria-label', `Go to post ${index + 1}`);
-        dot.addEventListener('click', () => scrollToCard(index));
-        dotsWrap.appendChild(dot);
-      });
+      if (dotsWrap) {
+        dotsWrap.innerHTML = '';
+        cards.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'slider-dot';
+          dot.setAttribute('aria-label', `Go to post ${index + 1}`);
+          dot.addEventListener('click', event => {
+            event.preventDefault();
+            scrollToCard(index);
+          });
+          dotsWrap.appendChild(dot);
+        });
+      }
 
-      const dots = [...dotsWrap.children];
+      const dots = dotsWrap ? [...dotsWrap.children] : [];
 
-      function getActiveIndex() {
-        const center = viewport.scrollLeft + viewport.clientWidth / 2;
-        let bestIndex = 0;
-        let bestDistance = Infinity;
-
+      function nearestIndex() {
+        const viewportCenter = viewport.getBoundingClientRect().left + viewport.clientWidth / 2;
+        let best = 0;
+        let distance = Infinity;
         cards.forEach((card, index) => {
-          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-          const distance = Math.abs(center - cardCenter);
-          if (distance < bestDistance) {
-            bestDistance = distance;
-            bestIndex = index;
+          const rect = card.getBoundingClientRect();
+          const value = Math.abs((rect.left + rect.width / 2) - viewportCenter);
+          if (value < distance) {
+            distance = value;
+            best = index;
           }
         });
-
-        return bestIndex;
+        return best;
       }
 
-      function updateSlider() {
-        const index = getActiveIndex();
-        current.textContent = String(index + 1).padStart(2, '0');
-        dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === index));
-        prev.disabled = index === 0;
-        next.disabled = index === cards.length - 1;
+      function updateControls(index = nearestIndex()) {
+        activeIndex = clampIndex(index);
+        if (current) current.textContent = String(activeIndex + 1).padStart(2, '0');
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+        prev.disabled = activeIndex === 0;
+        next.disabled = activeIndex === cards.length - 1;
+        prev.setAttribute('aria-disabled', String(prev.disabled));
+        next.setAttribute('aria-disabled', String(next.disabled));
       }
 
-      function go(direction) {
-        const index = getActiveIndex();
-        const target = Math.max(0, Math.min(cards.length - 1, index + direction));
-        scrollToCard(target);
-      }
+      prev.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        scrollToCard(activeIndex - 1);
+      });
 
-      prev.addEventListener('click', () => go(-1));
-      next.addEventListener('click', () => go(1));
-      viewport.addEventListener('scroll', () => requestAnimationFrame(updateSlider), { passive: true });
-      window.addEventListener('resize', updateSlider);
-      updateSlider();
+      next.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        scrollToCard(activeIndex + 1);
+      });
+
+      viewport.addEventListener('scroll', () => {
+        cancelAnimationFrame(scrollFrame);
+        scrollFrame = requestAnimationFrame(() => updateControls());
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        updateControls();
+        viewport.scrollTo({ left: cardTargetLeft(activeIndex), behavior: 'auto' });
+      });
+
+      requestAnimationFrame(() => scrollToCard(0, 'auto'));
     });
 
     const lightbox = document.getElementById('portfolioLightbox');

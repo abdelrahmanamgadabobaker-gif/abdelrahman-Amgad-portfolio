@@ -81,8 +81,7 @@ projects.forEach((project, index) => {
     ${project.cover ? `<img class="project-cover" src="${project.cover}" alt="${project.title} project cover" />` : ""}
     ${project.cover ? `<div class="project-cover-overlay"></div>` : ""}
     <div class="project-index">${String(index + 1).padStart(2, "0")}</div>
-    <div class="project-top">
-      <span>${project.category}</span>
+    <div class="project-top project-top-status-only">
       <span class="project-status">${project.status}</span>
     </div>
     <div class="project-bottom">

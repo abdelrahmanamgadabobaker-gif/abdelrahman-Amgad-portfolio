@@ -35,11 +35,8 @@
 <div class="case-hero">
 <div class="reveal">
 <p class="eyebrow">FINTECH · BRAND COMMUNICATION · SOCIAL MEDIA</p>
-<h1 class="text-balance">Selected work for Bokra.</h1>
-<p class="case-intro copy-medium">
-            A collection of campaign thinking, product communication, and social media advertising
-            created across Bokra’s financial products.
-          </p>
+<h1 class="text-balance">Bokra selected work.</h1>
+<p class="case-intro copy-medium">Campaign and product visuals created across Bokra’s financial products.</p>
 </div>
 <div class="case-meta reveal">
 <div class="case-meta-item">
@@ -58,7 +55,6 @@
 </div>
 <a class="scroll-cue" href="#project-content">SCROLL TO EXPLORE ↓</a></section>
 <section class="section-shell bokra-paths-section rhythm-section rhythm-alt" id="project-content">
-
 <div class="section-inner"><div class="bokra-paths reveal">
 <a class="bokra-path-card bokra-path-case" href="bokra-case-study.html">
 <span class="bokra-path-number">01</span>
@@ -84,7 +80,6 @@
 </a>
 </div></div></section>
 <section class="section-shell case-section rhythm-section rhythm-base contained-section">
-
 <div class="section-inner"><a class="case-study-feature reveal" href="bokra-case-study.html">
 <div class="case-study-feature-copy">
 <p class="eyebrow">FEATURED CASE STUDY</p>
@@ -250,7 +245,6 @@
 <div aria-label="Pension carousel navigation" class="slider-dots" data-dots=""></div>
 </div></div></section>
 <section class="section-shell case-section rhythm-section rhythm-base contained-section">
-
 <div class="section-inner"><div class="case-next reveal">
 <div>
 <p class="eyebrow">BACK TO PORTFOLIO</p>
@@ -288,81 +282,96 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
 
-    document.querySelectorAll("[data-slider]").forEach(slider => {
-      const viewport = slider.querySelector("[data-viewport]");
-      const cards = [...slider.querySelectorAll(".slider-card")];
-      const prev = slider.querySelector("[data-prev]");
-      const next = slider.querySelector("[data-next]");
-      const current = slider.querySelector("[data-current]");
-      const total = slider.querySelector("[data-total]");
-      const dotsWrap = slider.querySelector("[data-dots]");
+    document.querySelectorAll('[data-slider]').forEach(slider => {
+      const viewport = slider.querySelector('[data-viewport]');
+      const cards = [...slider.querySelectorAll('.slider-card')];
+      const prev = slider.querySelector('[data-prev]');
+      const next = slider.querySelector('[data-next]');
+      const current = slider.querySelector('[data-current]');
+      const total = slider.querySelector('[data-total]');
+      const dotsWrap = slider.querySelector('[data-dots]');
 
-      total.textContent = String(cards.length).padStart(2, "0");
+      if (!viewport || !cards.length || !prev || !next) return;
+      if (total) total.textContent = String(cards.length).padStart(2, '0');
 
-      function scrollToCard(index, behavior = "smooth") {
-        const card = cards[index];
-        const targetLeft = card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
-        viewport.scrollTo({ left: Math.max(0, targetLeft), behavior });
+      let activeIndex = 0;
+      let scrollFrame = 0;
+      const clampIndex = index => Math.max(0, Math.min(cards.length - 1, index));
+
+      function cardTargetLeft(index) {
+        const card = cards[clampIndex(index)];
+        const viewportRect = viewport.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        return viewport.scrollLeft + (cardRect.left - viewportRect.left) -
+          (viewport.clientWidth - cardRect.width) / 2;
       }
 
-      cards.forEach((_, index) => {
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "slider-dot";
-        dot.setAttribute("aria-label", `Go to post ${index + 1}`);
-        dot.addEventListener("click", () => scrollToCard(index));
-        dotsWrap.appendChild(dot);
-      });
+      function updateControls(index = activeIndex) {
+        activeIndex = clampIndex(index);
+        if (current) current.textContent = String(activeIndex + 1).padStart(2, '0');
+        const dots = dotsWrap ? [...dotsWrap.children] : [];
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+        prev.disabled = activeIndex === 0;
+        next.disabled = activeIndex === cards.length - 1;
+        prev.setAttribute('aria-disabled', String(prev.disabled));
+        next.setAttribute('aria-disabled', String(next.disabled));
+      }
 
-      const dots = [...dotsWrap.children];
+      function scrollToCard(index, behavior = 'smooth') {
+        activeIndex = clampIndex(index);
+        viewport.scrollTo({ left: cardTargetLeft(activeIndex), behavior });
+        updateControls(activeIndex);
+      }
 
-      function getActiveIndex() {
-        const center = viewport.scrollLeft + viewport.clientWidth / 2;
-        let bestIndex = 0;
-        let bestDistance = Infinity;
-
-        cards.forEach((card, index) => {
-          const distance = Math.abs(center - (card.offsetLeft + card.offsetWidth / 2));
-          if (distance < bestDistance) {
-            bestDistance = distance;
-            bestIndex = index;
-          }
+      if (dotsWrap) {
+        dotsWrap.innerHTML = '';
+        cards.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'slider-dot';
+          dot.setAttribute('aria-label', `Go to post ${index + 1}`);
+          dot.addEventListener('click', event => {
+            event.preventDefault();
+            scrollToCard(index);
+          });
+          dotsWrap.appendChild(dot);
         });
-
-        return bestIndex;
       }
 
-      function updateSlider() {
-        const index = getActiveIndex();
-        current.textContent = String(index + 1).padStart(2, "0");
-        dots.forEach((dot, dotIndex) => dot.classList.toggle("active", dotIndex === index));
-        prev.disabled = index === 0;
-        next.disabled = index === cards.length - 1;
+      function nearestIndex() {
+        const viewportCenter = viewport.getBoundingClientRect().left + viewport.clientWidth / 2;
+        let best = 0;
+        let distance = Infinity;
+        cards.forEach((card, index) => {
+          const rect = card.getBoundingClientRect();
+          const value = Math.abs((rect.left + rect.width / 2) - viewportCenter);
+          if (value < distance) { distance = value; best = index; }
+        });
+        return best;
       }
 
-      function go(direction) {
-        const index = getActiveIndex();
-        const target = Math.max(0, Math.min(cards.length - 1, index + direction));
-        scrollToCard(target);
-      }
-
-      prev.addEventListener("click", () => go(-1));
-      next.addEventListener("click", () => go(1));
-      slider.tabIndex = 0;
-      slider.addEventListener("keydown", event => {
-        if (event.key === "ArrowLeft") {
-          event.preventDefault();
-          go(-1);
-        }
-        if (event.key === "ArrowRight") {
-          event.preventDefault();
-          go(1);
-        }
+      prev.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        scrollToCard(activeIndex - 1);
+      });
+      next.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        scrollToCard(activeIndex + 1);
       });
 
-      viewport.addEventListener("scroll", () => requestAnimationFrame(updateSlider), { passive: true });
-      window.addEventListener("resize", updateSlider);
-      updateSlider();
+      viewport.addEventListener('scroll', () => {
+        cancelAnimationFrame(scrollFrame);
+        scrollFrame = requestAnimationFrame(() => updateControls(nearestIndex()));
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        viewport.scrollTo({ left: cardTargetLeft(activeIndex), behavior: 'auto' });
+        updateControls(activeIndex);
+      });
+
+      requestAnimationFrame(() => scrollToCard(0, 'auto'));
     });
 
     const lightbox = document.getElementById("portfolioLightbox");
@@ -401,42 +410,5 @@
     updateReadingProgress();
 
 </script>
-
-<script>
-(() => {
-  const sliders = document.querySelectorAll(".bokra-slider, [data-slider]");
-  sliders.forEach((slider) => {
-    const track = slider.querySelector(".bokra-slider-track, .slider-track, [data-slider-track]");
-    if (!track) return;
-
-    track.dir = "ltr";
-    track.classList.add("force-ltr-slider");
-
-    const prev = slider.querySelector(".slider-prev, [data-prev]");
-    const next = slider.querySelector(".slider-next, [data-next]");
-
-    const getStep = () => {
-      const card = track.querySelector(":scope > *");
-      if (!card) return track.clientWidth;
-      const styles = getComputedStyle(track);
-      const gap = parseFloat(styles.columnGap || styles.gap || 0);
-      return card.getBoundingClientRect().width + gap;
-    };
-
-    if (prev) {
-      prev.addEventListener("click", () => {
-        track.scrollBy({ left: -getStep(), behavior: "smooth" });
-      }, { capture: true });
-    }
-
-    if (next) {
-      next.addEventListener("click", () => {
-        track.scrollBy({ left: getStep(), behavior: "smooth" });
-      }, { capture: true });
-    }
-  });
-})();
-</script>
-
 </body>
 </html>

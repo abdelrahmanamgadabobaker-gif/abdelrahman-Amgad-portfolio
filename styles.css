@@ -2834,3 +2834,224 @@ h3 { font-size: 1.3rem; margin-bottom: 6px; }
     width: calc(100% - 32px);
   }
 }
+
+
+/* =========================================================
+   Version 25.1 — project scale + home titles + slider controls
+   ========================================================= */
+
+/* Home: keep project cards focused on the company name. */
+.home-page .project-bottom h3,
+body:not(.project-page) .project-bottom h3 {
+  font-size: clamp(1.55rem, 2.2vw, 2.65rem);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  max-width: 440px;
+}
+
+body:not(.project-page) .project-bottom p {
+  display: none;
+}
+
+/* Project galleries: slightly smaller artwork with breathing room. */
+.project-page .slider-track {
+  gap: clamp(16px, 1.8vw, 24px);
+  justify-content: flex-start;
+}
+
+.project-page .slider-card {
+  flex-basis: clamp(260px, 34vw, 430px);
+  max-width: 430px;
+  height: auto;
+  aspect-ratio: auto;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.025);
+  padding: clamp(8px, 1vw, 14px);
+  cursor: zoom-in;
+}
+
+.project-page .slider-card-story {
+  flex-basis: clamp(210px, 24vw, 310px);
+  max-width: 310px;
+}
+
+.project-page .slider-card img {
+  width: 100%;
+  height: auto;
+  max-height: min(72vh, 720px);
+  object-fit: contain !important;
+  object-position: center;
+  transform: none !important;
+}
+
+.project-page .slider-card:hover img {
+  transform: none !important;
+}
+
+/* Clear, reliable previous/next controls. */
+.project-page .slider-arrows {
+  direction: ltr;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.project-page .slider-arrow {
+  width: auto;
+  min-width: 112px;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  white-space: nowrap;
+  font: inherit;
+  line-height: 1;
+  position: relative;
+  z-index: 4;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.project-page .slider-arrow small {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  line-height: 1;
+}
+
+.project-page .slider-arrow:disabled {
+  opacity: .35;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  body:not(.project-page) .project-bottom h3 {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+  }
+
+  .project-page .slider-card,
+  .project-page .slider-card-story {
+    flex-basis: min(82vw, 360px);
+    max-width: min(82vw, 360px);
+  }
+
+  .project-page .slider-card img {
+    max-height: 66vh;
+  }
+
+  .project-page .slider-arrow {
+    min-width: 48px;
+    width: 48px;
+    padding: 0;
+  }
+
+  .project-page .slider-arrow small {
+    display: none;
+  }
+}
+
+
+/* Version 25.2 — faster project entry and cleaner alignment */
+.project-page .case-header,
+.project-page .bokra-overview-hero{
+  min-height:auto!important;
+  align-content:start!important;
+  padding-top:clamp(96px,8vw,124px)!important;
+  padding-bottom:clamp(58px,6vw,84px)!important;
+}
+.project-page .case-nav{margin-bottom:clamp(38px,4.5vw,58px)!important}
+.project-page .case-header h1,
+.project-page .bokra-overview-hero h1,
+.project-page .jupiter-hero-copy h1,
+.project-page .nsas-hero-copy h1,
+.project-page .touch-hero-copy h1,
+.project-page .trueval-hero-copy h1{
+  max-width:900px!important;
+  font-size:clamp(3.1rem,6.25vw,6.3rem)!important;
+  line-height:.98!important;
+  letter-spacing:-.058em!important;
+}
+.project-page .case-intro{
+  max-width:680px!important;
+  margin-top:22px!important;
+  font-size:clamp(1rem,1.18vw,1.18rem)!important;
+  line-height:1.65!important;
+}
+.project-page .jupiter-hero-grid,
+.project-page .nsas-hero-grid,
+.project-page .touch-hero-grid,
+.project-page .trueval-hero-grid,
+.project-page .case-hero{align-items:end!important;margin-top:0!important}
+.project-page .scroll-cue{position:static!important;display:inline-block!important;margin-top:40px!important}
+
+.project-page .statement-section{
+  min-height:auto!important;
+  padding-top:clamp(82px,9vw,126px)!important;
+  padding-bottom:clamp(82px,9vw,126px)!important;
+}
+.project-page .statement-section>.section-inner{
+  width:min(calc(100% - (var(--site-gutter)*2)),1240px)!important;
+  margin-inline:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+.project-page .statement-section .eyebrow{
+  margin:0 0 26px!important;
+  text-align:center!important;
+}
+.project-page .statement-section h2{
+  width:100%!important;
+  max-width:1050px!important;
+  margin:0 auto!important;
+  font-size:clamp(2.7rem,5.8vw,6.4rem)!important;
+  line-height:1.02!important;
+  letter-spacing:-.058em!important;
+  text-align:center!important;
+}
+.project-page .statement-section .button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+  min-width:250px!important;
+  margin:38px auto 0!important;
+  text-align:center!important;
+}
+@media(max-width:760px){
+  .project-page .case-header,
+  .project-page .bokra-overview-hero{padding-top:88px!important;padding-bottom:52px!important}
+  .project-page .case-nav{margin-bottom:34px!important}
+  .project-page .case-header h1,
+  .project-page .bokra-overview-hero h1,
+  .project-page .jupiter-hero-copy h1,
+  .project-page .nsas-hero-copy h1,
+  .project-page .touch-hero-copy h1,
+  .project-page .trueval-hero-copy h1{
+    font-size:clamp(2.65rem,13.5vw,4.6rem)!important;
+    line-height:1.02!important;
+  }
+  .project-page .statement-section h2{
+    font-size:clamp(2.25rem,11vw,4rem)!important;
+    line-height:1.06!important;
+  }
+  .project-page .statement-section .button{min-width:220px!important;margin-top:30px!important}
+}
+
+
+/* Version 25.3 — clean homepage project-card header */
+.project-card .project-top.project-top-status-only {
+  justify-content: flex-end;
+}
+
+.project-card .project-top.project-top-status-only .project-status {
+  margin-left: auto;
+}

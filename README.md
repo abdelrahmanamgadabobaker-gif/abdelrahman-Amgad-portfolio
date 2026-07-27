@@ -53,3 +53,9 @@ Version 22: shortened project copy and introduced varied visual pacing, progress
 Version 23: final copy and typography audit. Removed repeated or unnecessary text, tightened project descriptions, and standardized reading widths, type scale, line-height, alignment, and responsive spacing.
 
 Version 24: fixed Bokra slider movement to left-to-right behavior, unified all project text/image alignment, and moved every project section's text inside the same visual container as its artwork.
+
+Version 25.1 Polish: reduced project gallery scale, preserved full image ratios, reduced homepage company-title size, removed homepage card descriptions, and rebuilt previous/next carousel controls for reliable navigation.
+
+Version 25.2: shorter project intros, earlier content start, aligned takeaway CTA, and Cairo location update.
+
+Version 25.3: replaced the downloadable CV with the newly supplied resume and removed the category/industry label from the top-left of homepage project cards.
