@@ -2531,3 +2531,306 @@ h3 { font-size: 1.3rem; margin-bottom: 6px; }
     gap: 12px;
   }
 }
+
+
+/* =========================================================
+   Version 22 — dynamic project pacing and reduced fatigue
+   ========================================================= */
+.reading-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 3px;
+  z-index: 9999;
+  pointer-events: none;
+  background: rgba(255,255,255,.045);
+}
+.reading-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #00b8ae;
+  box-shadow: 0 0 18px rgba(0,184,174,.85);
+  transition: width .08s linear;
+}
+.project-page main { overflow: clip; }
+.project-page .rhythm-section { position: relative; isolation: isolate; }
+.project-page .rhythm-alt::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 18px max(18px, calc((100vw - 1320px) / 2));
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 10% 5%, rgba(0,184,174,.09), transparent 33%),
+    rgba(255,255,255,.018);
+  border: 1px solid rgba(255,255,255,.055);
+}
+.project-page .case-header,
+.project-page .bokra-overview-hero {
+  min-height: min(88vh, 900px);
+  display: grid;
+  align-content: center;
+  position: relative;
+}
+.scroll-cue {
+  position: absolute;
+  bottom: 32px;
+  left: max(24px, calc((100vw - 1320px) / 2));
+  color: var(--muted);
+  font-size: .69rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-decoration: none;
+  opacity: .78;
+  animation: scrollCueFloat 2.2s ease-in-out infinite;
+}
+@keyframes scrollCueFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+.project-page .case-header h1,
+.project-page .bokra-overview-hero h1 {
+  max-width: 1050px;
+  text-wrap: balance;
+}
+.project-page .case-copy > p,
+.project-page .case-copy p,
+.project-page .bokra-section-head > p {
+  max-width: 660px;
+  text-wrap: pretty;
+}
+.project-page .slider-card,
+.project-page .portfolio-shot,
+.project-page [data-lightbox] { cursor: zoom-in; }
+.project-page .slider-card img,
+.project-page .portfolio-shot img,
+.project-page [data-lightbox] img {
+  transition: transform .65s cubic-bezier(.2,.7,.2,1), filter .45s ease;
+}
+.project-page .slider-card:hover img,
+.project-page .portfolio-shot:hover img,
+.project-page [data-lightbox]:hover img {
+  transform: scale(1.025);
+  filter: saturate(1.04) contrast(1.02);
+}
+.project-page .slider-toolbar,
+.project-page .product-group-head,
+.project-page .case-section-grid { row-gap: 26px; }
+.project-page .statement-section {
+  min-height: 64vh;
+  display: grid;
+  align-items: center;
+}
+.project-page .statement-section h2 {
+  font-size: clamp(2.8rem, 6.4vw, 7.4rem);
+  max-width: 1100px;
+  line-height: .98;
+  letter-spacing: -.065em;
+  text-wrap: balance;
+}
+.project-page .statement-section p:not(.eyebrow) {
+  font-size: clamp(1rem, 1.35vw, 1.3rem);
+  max-width: 640px;
+}
+.project-page .project-signature {
+  min-height: 42vh;
+  align-content: center;
+}
+@media (min-width: 980px) {
+  .project-page .case-section-grid > .case-number {
+    position: sticky;
+    top: 110px;
+    align-self: start;
+  }
+}
+@media (max-width: 760px) {
+  .project-page .case-header,
+  .project-page .bokra-overview-hero { min-height: 76vh; }
+  .scroll-cue { bottom: 22px; left: 22px; }
+  .project-page .rhythm-alt::before { inset: 8px; border-radius: 22px; }
+  .project-page .statement-section { min-height: 52vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue { animation: none; }
+  .project-page .slider-card img,
+  .project-page .portfolio-shot img,
+  .project-page [data-lightbox] img { transition: none; }
+}
+
+/* Version 23 — final typography, alignment, and copy polish */
+:root{--copy-width:62ch;--copy-width-narrow:48ch}
+.project-page{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.project-page .text-balance{text-wrap:balance}
+.project-page p{font-size:clamp(1rem,.92rem + .18vw,1.125rem);line-height:1.72;letter-spacing:-.012em}
+.project-page .copy-short{max-width:var(--copy-width-narrow)}
+.project-page .copy-medium,.project-page .copy-long{max-width:var(--copy-width)}
+.project-page .copy-long{line-height:1.78}
+.project-page h1{font-size:clamp(3.2rem,7vw,8.4rem);line-height:.94;letter-spacing:-.072em}
+.project-page h2{font-size:clamp(2.35rem,4.8vw,5.6rem);line-height:1;letter-spacing:-.058em}
+.project-page h3{font-size:clamp(1.55rem,2.6vw,3rem);line-height:1.08;letter-spacing:-.042em}
+.project-page h4{font-size:clamp(1.18rem,1.5vw,1.55rem);line-height:1.2;letter-spacing:-.025em}
+.project-page .eyebrow,.project-page .case-number,.project-page .meta-label{font-size:.72rem;line-height:1.2;letter-spacing:.15em}
+.project-page .case-header,.project-page .bokra-overview-hero,.project-page .case-section-grid,.project-page .slider-toolbar,.project-page .product-group-head,.project-page .bokra-section-head{align-items:start}
+.project-page .case-copy,.project-page .case-copy>*,.project-page .slider-toolbar>div:first-child,.project-page .product-group-head>div,.project-page .bokra-section-head>div{min-width:0}
+.project-page .case-copy>*+*,.project-page .product-work-heading>*+*,.project-page .social-category-head>*+*{margin-top:14px}
+.project-page .slider-toolbar h3,.project-page .product-group-head h4,.project-page .bokra-section-head h2{margin-bottom:0}
+.project-page .slider-toolbar p,.project-page .product-group-head p,.project-page .bokra-section-head>p{margin-top:0}
+.project-page .slider-toolbar,.project-page .product-group-head{margin-bottom:28px}
+.project-page .case-section-grid{column-gap:clamp(38px,6vw,96px)}
+.project-page .case-section,.project-page .bokra-gallery-section{padding-top:clamp(68px,8vw,118px);padding-bottom:clamp(68px,8vw,118px)}
+.project-page .case-header{padding-top:clamp(128px,14vw,190px);padding-bottom:clamp(92px,10vw,150px)}
+.project-page .statement-section p:not(.eyebrow){font-size:clamp(1.05rem,1rem + .25vw,1.28rem);line-height:1.65}
+.project-page figcaption{font-size:.84rem;line-height:1.45}
+.project-page .slider-card figcaption,.project-page .portfolio-shot figcaption{gap:10px}
+.project-page .slider-count{white-space:nowrap}
+@media(max-width:980px){.project-page .case-section-grid,.project-page .bokra-section-head{grid-template-columns:1fr}.project-page .case-number{margin-bottom:8px}.project-page .slider-toolbar{gap:20px}}
+@media(max-width:700px){.project-page h1{font-size:clamp(2.8rem,15vw,5rem);line-height:.96}.project-page h2{font-size:clamp(2.15rem,11vw,3.8rem)}.project-page h3{font-size:clamp(1.5rem,7vw,2.35rem)}.project-page p{font-size:1rem;line-height:1.68}.project-page .case-section,.project-page .bokra-gallery-section{padding-top:58px;padding-bottom:58px}.project-page .slider-toolbar,.project-page .product-group-head{margin-bottom:22px}}
+
+
+/* =========================================================
+   Version 24 — slider direction and container alignment fix
+   ========================================================= */
+
+:root {
+  --site-gutter: clamp(22px, 4vw, 56px);
+  --site-max: 1320px;
+  --panel-radius: 28px;
+}
+
+.project-page .section-inner {
+  width: min(calc(100% - (var(--site-gutter) * 2)), var(--site-max));
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.project-page .contained-section {
+  padding-inline: 0 !important;
+}
+
+.project-page .project-content-panel {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: var(--panel-radius);
+  border: 1px solid rgba(255,255,255,.07);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(0,184,174,.075), transparent 30%),
+    rgba(255,255,255,.018);
+  padding: clamp(22px, 3vw, 42px);
+}
+
+.project-page .aligned-block,
+.project-page .slider-track,
+.project-page .bokra-slider-track,
+.project-page .project-slider,
+.project-page .bokra-slider {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.project-page .slider-toolbar,
+.project-page .product-group-head,
+.project-page .bokra-section-head,
+.project-page .social-category-head,
+.project-page .product-work-heading {
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}
+
+.project-page .slider-toolbar > *,
+.project-page .product-group-head > *,
+.project-page .bokra-section-head > *,
+.project-page .social-category-head > *,
+.project-page .product-work-heading > * {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.project-page .slider-toolbar h2,
+.project-page .slider-toolbar h3,
+.project-page .slider-toolbar h4,
+.project-page .product-group-head h2,
+.project-page .product-group-head h3,
+.project-page .product-group-head h4,
+.project-page .bokra-section-head h2,
+.project-page .bokra-section-head h3,
+.project-page .social-category-head h2,
+.project-page .social-category-head h3,
+.project-page .product-work-heading h2,
+.project-page .product-work-heading h3,
+.project-page .slider-toolbar p,
+.project-page .product-group-head p,
+.project-page .bokra-section-head p,
+.project-page .social-category-head p,
+.project-page .product-work-heading p {
+  max-width: 62ch;
+}
+
+.project-page .force-ltr-slider,
+.project-page .bokra-slider,
+.project-page .bokra-slider-track {
+  direction: ltr !important;
+}
+
+.project-page .force-ltr-slider {
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.project-page .force-ltr-slider > * {
+  direction: ltr;
+  scroll-snap-align: start;
+}
+
+.project-page .slider-controls,
+.project-page .bokra-slider-controls {
+  direction: ltr;
+}
+
+.project-page .slider-prev,
+.project-page .slider-next,
+.project-page [data-prev],
+.project-page [data-next] {
+  flex: 0 0 auto;
+}
+
+.project-page .rhythm-alt::before {
+  inset-inline: max(18px, calc((100vw - var(--site-max)) / 2));
+}
+
+/* Keep all visible copy inside its section/panel boundary. */
+.project-page .rhythm-section > .section-inner,
+.project-page .statement-section > .section-inner,
+.project-page .project-signature > .section-inner {
+  overflow: hidden;
+}
+
+.project-page .section-inner > * {
+  max-width: 100%;
+}
+
+.project-page .case-copy,
+.project-page .case-copy > *,
+.project-page .slider-toolbar,
+.project-page .product-group-head,
+.project-page .bokra-section-head {
+  box-sizing: border-box;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --site-gutter: 16px;
+    --panel-radius: 20px;
+  }
+
+  .project-page .project-content-panel {
+    padding: 18px;
+  }
+
+  .project-page .section-inner {
+    width: calc(100% - 32px);
+  }
+}

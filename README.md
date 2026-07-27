@@ -47,3 +47,9 @@ Version 19: added Abdelrahman's signature to the About section and every project
 Version 20: rebuilt the Bokra selected-posts section as five organized swipe galleries, matching the interaction pattern used across Jupiter, NSAS, Touch, and Trueval.
 
 Version 21: converted large artwork files to optimized WebP and updated all website references for GitHub-friendly uploads.
+
+Version 22: shortened project copy and introduced varied visual pacing, progress feedback, scroll cues, alternating section treatments, stronger takeaway moments, and subtle artwork interactions across all project pages.
+
+Version 23: final copy and typography audit. Removed repeated or unnecessary text, tightened project descriptions, and standardized reading widths, type scale, line-height, alignment, and responsive spacing.
+
+Version 24: fixed Bokra slider movement to left-to-right behavior, unified all project text/image alignment, and moved every project section's text inside the same visual container as its artwork.
