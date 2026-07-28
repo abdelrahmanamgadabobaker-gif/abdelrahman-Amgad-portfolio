@@ -59,3 +59,5 @@ Version 25.1 Polish: reduced project gallery scale, preserved full image ratios,
 Version 25.2: shorter project intros, earlier content start, aligned takeaway CTA, and Cairo location update.
 
 Version 25.3: replaced the downloadable CV with the newly supplied resume and removed the category/industry label from the top-left of homepage project cards.
+
+Version 25.4: redesigned the homepage profile area as a premium editorial hero with a larger portrait, stronger personal identity, concise positioning, structured expertise, and direct portfolio/CV actions.
