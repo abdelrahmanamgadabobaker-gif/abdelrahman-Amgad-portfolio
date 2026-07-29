@@ -3672,3 +3672,19 @@ strong {
     min-height: 380px !important;
   }
 }
+
+/* =========================================================
+   Version 25.10 — portrait crop / fit refinement
+   Fill the frame and crop only the overflow.
+   ========================================================= */
+.editorial-portrait-frame {
+  overflow: hidden !important;
+}
+
+.editorial-portrait-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center bottom !important;
+  transform: none !important;
+}
