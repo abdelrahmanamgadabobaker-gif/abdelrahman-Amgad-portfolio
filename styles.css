@@ -3148,7 +3148,7 @@ body:not(.project-page) .project-bottom p {
 
 .editorial-copy h1 {
   margin: 0;
-  font-size: clamp(4.4rem, 8.2vw, 8.8rem);
+  font-size: clamp(3.8rem, 7.2vw, 7.6rem);
   line-height: .82;
   letter-spacing: -.075em;
   text-transform: uppercase;
@@ -3319,5 +3319,356 @@ body:not(.project-page) .project-bottom p {
 
   .editorial-portrait {
     justify-self: center !important;
+  }
+}
+
+/* =========================================================
+   Version 25.9 — responsive hardening
+   Prevent horizontal clipping and preserve content on laptop/mobile
+   ========================================================= */
+html {
+  width: 100%;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+main,
+section,
+header,
+footer,
+.site-header,
+.section-shell,
+.hero,
+.editorial-hero,
+.case-hero,
+.case-section-grid,
+.projects-grid,
+.about-grid,
+.contact-section,
+.experience-row,
+.jupiter-hero-grid,
+.jupiter-cover-collage,
+.social-project-head,
+.social-gallery,
+.carousel-frame,
+.product-group-head,
+.product-gallery,
+.bokra-paths,
+.case-study-feature {
+  min-width: 0;
+}
+
+img,
+video,
+iframe,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+iframe,
+video {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+span,
+strong {
+  overflow-wrap: anywhere;
+}
+
+/* Keep the homepage portrait fully visible instead of zoom-cropping it. */
+.editorial-portrait-frame {
+  display: grid;
+  place-items: end center;
+}
+
+.editorial-portrait-frame img {
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  transform: none !important;
+}
+
+@media (max-width: 1180px) {
+  .site-header {
+    padding-inline: 24px;
+    gap: 20px;
+  }
+
+  .desktop-nav {
+    gap: 18px;
+  }
+
+  .editorial-hero {
+    grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr) !important;
+    gap: clamp(38px, 5vw, 72px);
+  }
+
+  .editorial-copy h1 {
+    font-size: clamp(3.5rem, 6.6vw, 6.7rem);
+  }
+}
+
+@media (max-width: 980px) {
+  .site-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .header-cta {
+    white-space: nowrap;
+  }
+
+  .editorial-hero {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "copy" "portrait" !important;
+    gap: 48px;
+    padding-top: 100px;
+  }
+
+  .editorial-copy,
+  .editorial-portrait {
+    width: 100% !important;
+    max-width: none;
+  }
+
+  .editorial-portrait {
+    justify-self: stretch !important;
+  }
+
+  .editorial-portrait-frame {
+    width: min(100%, 620px);
+    margin-inline: auto;
+  }
+
+  .case-hero,
+  .case-section-grid,
+  .jupiter-hero-grid,
+  .jupiter-intro,
+  .case-study-feature,
+  .section-heading,
+  .about-grid,
+  .contact-section {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .jupiter-cover-collage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .jupiter-cover-collage .jupiter-cover-main {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .section-shell {
+    width: calc(100% - 32px);
+  }
+
+  .site-header {
+    padding: 13px 16px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-mark {
+    flex: 0 0 34px;
+  }
+
+  .header-cta {
+    padding: 8px 13px;
+    font-size: .88rem;
+  }
+
+  .editorial-hero {
+    padding-top: 82px;
+    padding-bottom: 64px;
+    gap: 38px;
+  }
+
+  .editorial-word {
+    max-width: 100vw;
+    font-size: 25vw;
+  }
+
+  .editorial-copy h1 {
+    font-size: clamp(2.75rem, 15vw, 4.8rem);
+    line-height: .91;
+    letter-spacing: -.065em;
+  }
+
+  .editorial-intro {
+    line-height: 1.62;
+  }
+
+  .editorial-portrait-frame {
+    width: 100%;
+    aspect-ratio: 4 / 5.25 !important;
+    border-radius: 22px;
+  }
+
+  .editorial-details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-actions,
+  .editorial-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-actions .button,
+  .editorial-actions .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-block {
+    padding-block: 72px;
+  }
+
+  .section-heading,
+  .about-grid,
+  .contact-section {
+    gap: 30px;
+  }
+
+  .project-card,
+  .project-card:nth-child(1),
+  .project-card:nth-child(2) {
+    min-height: 410px !important;
+    padding: 20px;
+  }
+
+  .project-top {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .project-bottom {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .project-bottom h3 {
+    font-size: clamp(1.8rem, 9vw, 2.8rem);
+  }
+
+  .experience-row {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .experience-summary {
+    grid-column: auto;
+  }
+
+  .case-header {
+    padding-top: 28px;
+  }
+
+  .case-nav {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .case-hero h1,
+  .jupiter-hero-copy h1 {
+    font-size: clamp(2.7rem, 14vw, 4.7rem);
+  }
+
+  .case-highlight,
+  .carousel-project,
+  .future-work-panel,
+  .bokra-path-card {
+    padding: 22px;
+  }
+
+  .case-next {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .jupiter-cover-collage,
+  .social-gallery,
+  .carousel-project-meta,
+  .carousel-summary,
+  .carousel-frame,
+  .product-gallery-two,
+  .product-group-head,
+  .future-work-panel,
+  .bokra-paths {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .jupiter-cover-collage .jupiter-cover-main {
+    grid-column: auto;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+  }
+
+  .modal {
+    padding: 14px;
+  }
+
+  .modal-panel {
+    max-height: calc(100svh - 28px);
+    overflow-y: auto;
+    padding: 28px 20px 22px;
+    border-radius: 22px;
+  }
+
+  .portfolio-lightbox {
+    padding: 14px;
+  }
+
+  .lightbox-dialog,
+  .lightbox-dialog img {
+    max-width: 100%;
+    max-height: calc(100svh - 28px);
+  }
+
+  .lightbox-close {
+    right: 6px;
+    top: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .section-shell {
+    width: calc(100% - 24px);
+  }
+
+  .site-header {
+    padding-inline: 12px;
+  }
+
+  .header-cta {
+    padding-inline: 11px;
+  }
+
+  .editorial-copy h1 {
+    font-size: clamp(2.45rem, 14.4vw, 3.45rem);
+  }
+
+  .project-card,
+  .project-card:nth-child(1),
+  .project-card:nth-child(2) {
+    min-height: 380px !important;
   }
 }
