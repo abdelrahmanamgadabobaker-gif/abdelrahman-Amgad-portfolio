@@ -3688,3 +3688,14 @@ strong {
   object-position: center bottom !important;
   transform: none !important;
 }
+
+/* Version 25.5 — homepage portrait edge-to-edge crop */
+.editorial-portrait-frame img {
+  transform: scale(1.17);
+  transform-origin: center bottom;
+}
+
+.editorial-portrait-frame img {
+  transform: scale(1.17) !important;
+  transform-origin: center bottom !important;
+}
