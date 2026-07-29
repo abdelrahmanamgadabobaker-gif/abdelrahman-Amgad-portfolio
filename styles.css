@@ -3689,13 +3689,14 @@ strong {
   transform: none !important;
 }
 
-/* Version 25.5 — homepage portrait edge-to-edge crop */
+/* =========================================================
+   Version 25.11 — homepage portrait top-gap refinement
+   Slightly enlarge the portrait and anchor it to the bottom,
+   removing the white space above the head while keeping a natural fit.
+   ========================================================= */
 .editorial-portrait-frame img {
-  transform: scale(1.17);
-  transform-origin: center bottom;
-}
-
-.editorial-portrait-frame img {
-  transform: scale(1.17) !important;
+  object-fit: cover !important;
+  object-position: center bottom !important;
+  transform: scale(1.075) !important;
   transform-origin: center bottom !important;
 }
