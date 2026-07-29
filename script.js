@@ -53,15 +53,6 @@ const projects = [
     color: "rgba(178, 40, 48, .24)",
     cover: "assets/trueval-giveaway-cover.jpg",
     link: "trueval.html"
-  },
-  {
-    title: "Personal Explorations",
-    category: "Branding · Posters · Print",
-    year: "Ongoing",
-    status: "Selected projects coming soon",
-    description: "Independent branding, poster, and print projects created to explore new visual styles and strengthen conceptual thinking.",
-    tags: ["Branding", "Posters", "Print", "Concept Design"],
-    color: "rgba(200, 200, 200, .12)"
   }
 ];
 
