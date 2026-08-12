@@ -28,6 +28,7 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   isolation: isolate;
   transition: flex .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+  cursor: pointer;
 }
 
 .world-gate:has(.world:hover) .world:not(:hover) { filter: brightness(.58); }
@@ -74,7 +75,7 @@ a { color: inherit; text-decoration: none; }
 .gate-question {
   position: absolute;
   z-index: 6;
-  left: 50%; top: 20%;
+  left: 50%; top: 12%;
   transform: translateX(-50%);
   width: min(620px, 90vw);
   text-align: center;
@@ -84,17 +85,21 @@ a { color: inherit; text-decoration: none; }
 }
 .gate-kicker { margin: 0 0 18px; font-size: .7rem; letter-spacing: .22em; font-weight: 700; }
 .gate-question h1 { margin: 0; font: 600 clamp(2.4rem, 4.8vw, 5.3rem)/.95 "Manrope", sans-serif; letter-spacing: -.065em; }
-.gate-question > span { display: block; margin-top: 18px; font-size: .85rem; opacity: .68; }
+.gate-question > span { display: inline-flex; align-items: center; gap: 9px; margin-top: 18px; padding: 9px 15px; border: 1px solid currentColor; border-radius: 999px; font-size: .75rem; font-weight: 600; opacity: .78; }
+.gate-question > span::before { content: "↓"; font-size: 1rem; }
 
 .world-number { position: absolute; z-index: 3; top: 30px; font-size: .7rem; letter-spacing: .2em; opacity: .58; }
 .world-artist .world-number { right: 30px; }
 .world-designer .world-number { right: 30px; }
 .world-copy { position: absolute; z-index: 3; left: 6%; right: 6%; bottom: 9%; }
+.choice-label { display: inline-flex; margin-bottom: 20px; padding: 8px 12px; border: 1px solid currentColor; border-radius: 999px; font-size: .6rem; font-weight: 800; letter-spacing: .18em; }
 .world-copy p { margin: 0 0 12px; font-size: .68rem; font-weight: 700; letter-spacing: .2em; }
-.world-copy h2 { margin: 0 0 26px; font: 600 clamp(3.2rem, 6.2vw, 7.5rem)/.85 "Manrope", sans-serif; letter-spacing: -.075em; }
+.world-copy h2 { margin: 0 0 26px; font: 600 clamp(2.8rem, 5.2vw, 6.2rem)/.88 "Manrope", sans-serif; letter-spacing: -.06em; }
 .world-artist h2 em { font-family: "Playfair Display", serif; font-weight: 600; }
 .world-designer h2 strong { color: var(--mint); }
-.world-cta { display: inline-flex; align-items: center; gap: 14px; font-size: .9rem; font-weight: 600; border-bottom: 1px solid currentColor; padding-bottom: 7px; }
+.world-cta { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-width: 210px; padding: 13px 17px; border: 1px solid currentColor; border-radius: 999px; font-size: .86rem; font-weight: 700; transition: background .25s ease,color .25s ease; }
+.world-artist:hover .world-cta { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.world-designer:hover .world-cta { background: var(--white); color: var(--ink); border-color: var(--white); }
 .world-cta b { transition: transform .3s ease; }
 .world:hover .world-cta b { transform: translate(4px,-4px); }
 
@@ -125,8 +130,9 @@ a { color: inherit; text-decoration: none; }
   .gate-question h1 { font-size: clamp(1.7rem, 8vw, 2.8rem); text-shadow: 0 1px 20px rgba(0,0,0,.18); }
   .world-copy { left: 18px; right: 18px; bottom: 24px; }
   .world-copy p { font-size: .56rem; margin-bottom: 8px; }
+  .choice-label { margin-bottom: 12px; padding: 6px 9px; font-size: .5rem; }
   .world-copy h2 { font-size: clamp(2.6rem, 14vw, 4rem); margin-bottom: 14px; }
-  .world-cta { font-size: .75rem; }
+  .world-cta { min-width: 190px; padding: 11px 14px; font-size: .75rem; }
   .world-number { top: 18px; right: 18px !important; }
   .artist-sketch { inset: 3% 4% 15% 28%; }
   .sketch-circle { width: 43vw; }
