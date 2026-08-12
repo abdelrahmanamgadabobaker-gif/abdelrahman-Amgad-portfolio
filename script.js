@@ -7,7 +7,7 @@ const projects = [
     description: "A representation-led campaign that helped middle- and lower-middle-income Egyptians see Bokra as a platform built for people like them.",
     tags: ["Key Visuals", "Social Media", "Campaign Systems", "Fintech"],
     color: "rgba(0, 184, 174, .28)",
-    cover: "assets/bokra-humanizing-finance.jpg",
+    cover: "assets/thumbs/design/bokra-humanizing-finance.jpg",
     link: "bokra.html"
   },
   {
@@ -18,7 +18,7 @@ const projects = [
     description: "A visual content system created for a PR agency, spanning brand communication, thought leadership, seasonal moments, recruitment, and corporate storytelling.",
     tags: ["Social Media", "Art Direction", "Brand Consistency", "PR Communication"],
     color: "rgba(22, 132, 127, .24)",
-    cover: "assets/jupiter-relationships.jpg",
+    cover: "assets/thumbs/design/jupiter-relationships.jpg",
     link: "jupiter.html"
   },
   {
@@ -40,7 +40,7 @@ const projects = [
     description: "Consumer-focused visual communication that turns appliance features, practical benefits, and seasonal moments into clear and engaging social content.",
     tags: ["Product Advertising", "Social Media", "Retail Communication", "Arabic Typography"],
     color: "rgba(139, 199, 62, .24)",
-    cover: "assets/touch-home-cover.jpg",
+    cover: "assets/thumbs/design/touch-home-cover.jpg",
     link: "touch.html"
   },
   {
@@ -51,7 +51,7 @@ const projects = [
     description: "Cookware communication combining product education, audience engagement, seasonal moments, and retail-focused social media content.",
     tags: ["Product Advertising", "Community Engagement", "Seasonal Campaigns", "Arabic Typography"],
     color: "rgba(178, 40, 48, .24)",
-    cover: "assets/trueval-giveaway-cover.jpg",
+    cover: "assets/thumbs/design/trueval-giveaway-cover.jpg",
     link: "trueval.html"
   }
 ];
@@ -69,7 +69,7 @@ projects.forEach((project, index) => {
   card.style.setProperty("--project-color", project.color);
   card.tabIndex = 0;
   card.innerHTML = `
-    ${project.cover ? `<img class="project-cover" src="${project.cover}" alt="${project.title} project cover" />` : ""}
+    ${project.cover ? `<img class="project-cover" src="${project.cover}" alt="${project.title} project cover" loading="lazy" decoding="async" />` : ""}
     ${project.cover ? `<div class="project-cover-overlay"></div>` : ""}
     <div class="project-index">${String(index + 1).padStart(2, "0")}</div>
     <div class="project-top project-top-status-only">
