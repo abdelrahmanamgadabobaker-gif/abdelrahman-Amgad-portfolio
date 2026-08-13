@@ -2538,19 +2538,51 @@ h3 { font-size: 1.3rem; margin-bottom: 6px; }
    ========================================================= */
 .reading-progress {
   position: fixed;
-  inset: 0 0 auto;
-  height: 3px;
+  top: 50%;
+  right: 24px;
+  width: 3px;
+  height: 150px;
+  transform: translateY(-50%);
   z-index: 9999;
   pointer-events: none;
-  background: rgba(255,255,255,.045);
+  background: rgba(255,255,255,.16);
+  border-radius: 999px;
+  transition: opacity .3s ease;
 }
 .reading-progress span {
   display: block;
-  width: 0;
-  height: 100%;
+  width: 100%;
+  height: 0;
   background: #00b8ae;
   box-shadow: 0 0 18px rgba(0,184,174,.85);
-  transition: width .08s linear;
+  border-radius: inherit;
+  transition: height .08s linear;
+}
+.reading-progress::before {
+  content: "KEEP SCROLLING";
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  width: max-content;
+  color: rgba(255,255,255,.72);
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: right center;
+}
+.reading-progress::after {
+  content: "↓";
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  color: #00b8ae;
+  font-size: 1rem;
+  transform: translateX(-50%);
+  animation: scrollCueFloat 1.8s ease-in-out infinite;
+}
+.reading-progress.complete {
+  opacity: .2;
 }
 .project-page main { overflow: clip; }
 .project-page .rhythm-section { position: relative; isolation: isolate; }
@@ -2587,6 +2619,11 @@ h3 { font-size: 1.3rem; margin-bottom: 6px; }
 @keyframes scrollCueFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(7px); }
+}
+
+@media (max-width: 700px) {
+  .reading-progress { right: 10px; height: 110px; }
+  .reading-progress::before { display: none; }
 }
 .project-page .case-header h1,
 .project-page .bokra-overview-hero h1 {

@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="styles.css" rel="stylesheet"/>
+<link href="styles.css?v=26" rel="stylesheet"/>
 </head>
 <body class="nsas-page project-page"><div aria-hidden="true" class="reading-progress"><span></span></div>
 <div class="noise"></div>
@@ -300,7 +300,8 @@
       if (!progressBar) return;
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
-      progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      progressBar.style.height = `${Math.min(100, Math.max(0, progress))}%`;
+      progressBar.parentElement.classList.toggle("complete", progress >= 98);
     };
     window.addEventListener("scroll", updateReadingProgress, { passive: true });
     window.addEventListener("resize", updateReadingProgress);
