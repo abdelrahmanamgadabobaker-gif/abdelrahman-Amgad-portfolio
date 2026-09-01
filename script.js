@@ -7,7 +7,7 @@ const projects = [
     description: "A representation-led campaign that helped middle- and lower-middle-income Egyptians see Bokra as a platform built for people like them.",
     tags: ["Key Visuals", "Social Media", "Campaign Systems", "Fintech"],
     color: "rgba(0, 184, 174, .28)",
-    cover: "assets/thumbs/design/bokra-humanizing-finance.jpg",
+    cover: "assets/bokra-family-cover.jpg",
     link: "bokra.html"
   },
   {
@@ -31,77 +31,62 @@ const projects = [
     color: "rgba(28, 76, 132, .24)",
     cover: "assets/nsas-wizz-special-fare.webp",
     link: "nsas.html"
-  },
-  {
-    title: "Touch by El Zenouki",
-    category: "Home Appliances · Product Communication",
-    year: "2025",
-    status: "View selected work",
-    description: "Consumer-focused visual communication that turns appliance features, practical benefits, and seasonal moments into clear and engaging social content.",
-    tags: ["Product Advertising", "Social Media", "Retail Communication", "Arabic Typography"],
-    color: "rgba(139, 199, 62, .24)",
-    cover: "assets/thumbs/design/touch-home-cover.jpg",
-    link: "touch.html"
-  },
-  {
-    title: "Trueval by El Zenouki",
-    category: "Cookware · Product & Community Communication",
-    year: "2025",
-    status: "View selected work",
-    description: "Cookware communication combining product education, audience engagement, seasonal moments, and retail-focused social media content.",
-    tags: ["Product Advertising", "Community Engagement", "Seasonal Campaigns", "Arabic Typography"],
-    color: "rgba(178, 40, 48, .24)",
-    cover: "assets/thumbs/design/trueval-giveaway-cover.jpg",
-    link: "trueval.html"
   }
 ];
 
-const grid = document.getElementById("projectsGrid");
+const featuredClients = document.getElementById("featuredClients");
 const modal = document.getElementById("projectModal");
 const modalTitle = document.getElementById("modalTitle");
 const modalKicker = document.getElementById("modalKicker");
 const modalDescription = document.getElementById("modalDescription");
 const modalTags = document.getElementById("modalTags");
 
-projects.forEach((project, index) => {
+function openProject(project) {
+  if (project.link) {
+    window.location.href = project.link;
+    return;
+  }
+
+  modalKicker.textContent = `${project.category} · ${project.year}`;
+  modalTitle.textContent = project.title;
+  modalDescription.textContent = project.description;
+  modalTags.innerHTML = project.tags.map(tag => `<span>${tag}</span>`).join("");
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+projects.slice(0, 3).forEach((project, index) => {
   const card = document.createElement("article");
-  card.className = "project-card reveal";
+  card.className = `featured-client-card featured-client-${index + 1} reveal`;
   card.style.setProperty("--project-color", project.color);
   card.tabIndex = 0;
+  card.setAttribute("role", "link");
+  card.setAttribute("aria-label", `View ${project.title} work`);
   card.innerHTML = `
-    ${project.cover ? `<img class="project-cover" src="${project.cover}" alt="${project.title} project cover" loading="lazy" decoding="async" />` : ""}
-    ${project.cover ? `<div class="project-cover-overlay"></div>` : ""}
-    <div class="project-index">${String(index + 1).padStart(2, "0")}</div>
-    <div class="project-top project-top-status-only">
-      <span class="project-status">${project.status}</span>
+    <div class="featured-client-media">
+      <img src="${project.cover}" alt="${project.title} selected work" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async" />
+      <div class="featured-client-shade"></div>
+      <div class="featured-client-orbit" aria-hidden="true"></div>
     </div>
-    <div class="project-bottom">
+    <div class="featured-client-head">
+      <span class="featured-client-number">0${index + 1}</span>
+      <span class="featured-client-year">${project.year}</span>
+    </div>
+    <div class="featured-client-copy">
+      <p>${project.category}</p>
       <h3>${project.title}</h3>
-      <p>${project.description}</p>
+      <div class="featured-client-action"><span>${project.status}</span><span aria-hidden="true">↗</span></div>
     </div>
   `;
-
-  const openProject = () => {
-    if (project.link) {
-      window.location.href = project.link;
-      return;
-    }
-
-    modalKicker.textContent = `${project.category} · ${project.year}`;
-    modalTitle.textContent = project.title;
-    modalDescription.textContent = project.description;
-    modalTags.innerHTML = project.tags.map(tag => `<span>${tag}</span>`).join("");
-    modal.classList.add("active");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-  };
-
-  card.addEventListener("click", openProject);
+  card.addEventListener("click", () => openProject(project));
   card.addEventListener("keydown", e => {
-    if (e.key === "Enter" || e.key === " ") openProject();
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openProject(project);
+    }
   });
-
-  grid.appendChild(card);
+  featuredClients.appendChild(card);
 });
 
 function closeModal() {
